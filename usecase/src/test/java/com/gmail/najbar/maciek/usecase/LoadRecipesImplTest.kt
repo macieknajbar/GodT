@@ -33,10 +33,6 @@ class LoadRecipesImplTest {
     }
 
     @Test fun `presents caches recipes to user`() {
-        val recipes = listOf(
-                Recipe.from(1L, "Jam Sandwich", "Sandwich covered with JAM!", "http://jam_sandwich.jpg", listOf(Ingredient.from(1L, "Jam"), Ingredient.from(2L, "Sandwich"))),
-                Recipe.from(2L, "Scrambled eggs", "Fried smashed eggs", "http://scrambled_eggs.png", listOf(Ingredient.from(3L, "Egg"))),
-                Recipe.from(3L, "Peanut butter fingers", "Put your fingers into a jar and pull out fingers covered with peanut butter", "", listOf(Ingredient.from(4L, "Peanut butter"))))
         val loadRecipes = LoadRecipesImpl(
                 NoOp.of(LoadRecipes.Gateway::class.java),
                 fakeCacheWith(recipes),
@@ -51,10 +47,6 @@ class LoadRecipesImplTest {
     }
 
     @Test fun `caches requested recipes`() {
-        val recipes = listOf(
-                Recipe.from(1L, "Jam Sandwich", "Sandwich covered with JAM!", "http://jam_sandwich.jpg", listOf(Ingredient.from(1L, "Jam"), Ingredient.from(2L, "Sandwich"))),
-                Recipe.from(2L, "Scrambled eggs", "Fried smashed eggs", "http://scrambled_eggs.png", listOf(Ingredient.from(3L, "Egg"))),
-                Recipe.from(3L, "Peanut butter fingers", "Put your fingers into a jar and pull out fingers covered with peanut butter", "", listOf(Ingredient.from(4L, "Peanut butter"))))
         val loadRecipes = LoadRecipesImpl(
                 fakeGatewayReturns(recipes),
                 cache,
@@ -67,6 +59,24 @@ class LoadRecipesImplTest {
 
         loadRecipes.all()
     }
+
+    @Test fun `presents requested recipes`() {
+        val loadRecipes = LoadRecipesImpl(
+                fakeGatewayReturns(recipes),
+                NoOp.of(LoadRecipes.Cache::class.java),
+                presenter)
+
+        context.checking(Expectations().apply {
+            oneOf(presenter).present(recipes.map { LoadRecipes.Recipe.from(it) })
+        })
+
+        loadRecipes.all()
+    }
+
+    val recipes = listOf(
+            Recipe.from(1L, "Jam Sandwich", "Sandwich covered with JAM!", "http://jam_sandwich.jpg", listOf(Ingredient.from(1L, "Jam"), Ingredient.from(2L, "Sandwich"))),
+            Recipe.from(2L, "Scrambled eggs", "Fried smashed eggs", "http://scrambled_eggs.png", listOf(Ingredient.from(3L, "Egg"))),
+            Recipe.from(3L, "Peanut butter fingers", "Put your fingers into a jar and pull out fingers covered with peanut butter", "", listOf(Ingredient.from(4L, "Peanut butter"))))
 
     private fun fakeGatewayReturns(recipes: Collection<Recipe>) = object : LoadRecipes.Gateway {
         override fun requestAllRecipes(callback: LoadRecipes.Gateway.Callback) {
