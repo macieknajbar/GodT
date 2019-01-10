@@ -1,6 +1,7 @@
-package com.gmail.najbar.maciek.repository
+package com.gmail.najbar.maciek.repository.gateway
 
 import com.gmail.najbar.maciek.domain.Ingredient
+import com.gmail.najbar.maciek.repository.Recipe
 import com.gmail.najbar.maciek.usecase.LoadRecipes
 import okhttp3.OkHttpClient
 import retrofit2.Call

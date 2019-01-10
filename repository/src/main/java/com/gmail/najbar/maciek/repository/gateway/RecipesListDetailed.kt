@@ -1,5 +1,6 @@
-package com.gmail.najbar.maciek.repository
+package com.gmail.najbar.maciek.repository.gateway
 
+import com.gmail.najbar.maciek.repository.Recipe
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
