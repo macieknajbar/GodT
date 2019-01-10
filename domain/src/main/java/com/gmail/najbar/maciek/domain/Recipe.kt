@@ -5,4 +5,10 @@ data class Recipe(
         val title: String,
         val description: String,
         val ingredients: Collection<Ingredient>,
-        val image: Image)
+        val image: Image) {
+
+    companion object {
+        fun from(id: Long, title: String, description: String, imageUrl: String, ingredients: Collection<Ingredient>) =
+                Recipe(id, title, description, ingredients, Image(imageUrl))
+    }
+}
