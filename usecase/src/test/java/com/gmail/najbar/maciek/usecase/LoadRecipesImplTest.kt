@@ -50,9 +50,35 @@ class LoadRecipesImplTest {
         loadRecipes.all()
     }
 
+    @Test fun `caches requested recipes`() {
+        val recipes = listOf(
+                Recipe.from(1L, "Jam Sandwich", "Sandwich covered with JAM!", "http://jam_sandwich.jpg", listOf(Ingredient.from(1L, "Jam"), Ingredient.from(2L, "Sandwich"))),
+                Recipe.from(2L, "Scrambled eggs", "Fried smashed eggs", "http://scrambled_eggs.png", listOf(Ingredient.from(3L, "Egg"))),
+                Recipe.from(3L, "Peanut butter fingers", "Put your fingers into a jar and pull out fingers covered with peanut butter", "", listOf(Ingredient.from(4L, "Peanut butter"))))
+        val loadRecipes = LoadRecipesImpl(
+                fakeGatewayReturns(recipes),
+                cache,
+                NoOp.of(LoadRecipes.Presenter::class.java))
+
+        context.checking(Expectations().apply {
+            oneOf(cache).cacheAll(recipes)
+            allowing(cache).loadAll(loadRecipes.cacheCallback)
+        })
+
+        loadRecipes.all()
+    }
+
+    private fun fakeGatewayReturns(recipes: Collection<Recipe>) = object : LoadRecipes.Gateway {
+        override fun requestAllRecipes(callback: LoadRecipes.Gateway.Callback) {
+            callback.gotYour(recipes)
+        }
+    }
+
     private fun fakeCacheWith(recipes: Collection<Recipe>) = object : LoadRecipes.Cache {
         override fun loadAll(callback: LoadRecipes.Cache.Callback) {
             callback.found(recipes)
         }
+
+        override fun cacheAll(recipes: Collection<Recipe>) {}
     }
 }

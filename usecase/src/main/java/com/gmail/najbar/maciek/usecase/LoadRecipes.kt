@@ -27,7 +27,15 @@ interface LoadRecipes {
          */
         fun requestAllRecipes(callback: Callback)
 
-        interface Callback
+        interface Callback {
+
+            /**
+             * Returns recipes pulled through gateway.
+             *
+             * @param   recipes Collection of recipes.
+             */
+            fun gotYour(recipes: Collection<RecipeEntity>)
+        }
     }
 
     interface Cache {
@@ -38,6 +46,13 @@ interface LoadRecipes {
          * @param   callback Callback.
          */
         fun loadAll(callback: Callback)
+
+        /**
+         * Caches provided recipes.
+         *
+         * @param   recipes Recipes.
+         */
+        fun cacheAll(recipes: Collection<RecipeEntity>)
 
         interface Callback {
 

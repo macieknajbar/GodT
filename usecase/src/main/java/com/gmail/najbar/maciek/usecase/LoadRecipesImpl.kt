@@ -8,7 +8,9 @@ class LoadRecipesImpl(
         private val presenter: LoadRecipes.Presenter) : LoadRecipes {
 
     internal val gatewayCallback = object : LoadRecipes.Gateway.Callback {
+        override fun gotYour(recipes: Collection<com.gmail.najbar.maciek.domain.Recipe>) {
 
+        }
     }
 
     internal val cacheCallback = object : LoadRecipes.Cache.Callback {
