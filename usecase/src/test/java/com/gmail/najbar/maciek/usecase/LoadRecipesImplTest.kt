@@ -15,17 +15,21 @@ class LoadRecipesImplTest {
     private val cache = context.mock(LoadRecipes.Cache::class.java)
 
     @Test fun `requests for recipes through gateway`() {
-        val loadRecipes = LoadRecipesImpl(gateway)
+        val loadRecipes = LoadRecipesImpl(
+                gateway,
+                NoOp.of(LoadRecipes.Cache::class.java))
 
         context.checking(Expectations().apply {
-            oneOf(gateway).requestAllRecipes(loadRecipes.callback)
+            oneOf(gateway).requestAllRecipes(loadRecipes.gatewayCallback)
         })
 
         loadRecipes.all()
     }
 
     @Test fun `reads information from cache`() {
-        val loadRecipes = LoadRecipesImpl(NoOp.of(LoadRecipes.Gateway::class.java))
+        val loadRecipes = LoadRecipesImpl(
+                NoOp.of(LoadRecipes.Gateway::class.java),
+                cache)
 
         context.checking(Expectations().apply {
             oneOf(cache).loadAll(loadRecipes.cacheCallback)

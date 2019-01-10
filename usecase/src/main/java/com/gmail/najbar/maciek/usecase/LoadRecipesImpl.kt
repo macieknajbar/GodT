@@ -1,9 +1,10 @@
 package com.gmail.najbar.maciek.usecase
 
 class LoadRecipesImpl(
-        private val gateway: LoadRecipes.Gateway) : LoadRecipes {
+        private val gateway: LoadRecipes.Gateway,
+        private val cache: LoadRecipes.Cache) : LoadRecipes {
 
-    internal val callback = object : LoadRecipes.Gateway.Callback {
+    internal val gatewayCallback = object : LoadRecipes.Gateway.Callback {
 
     }
 
@@ -12,6 +13,7 @@ class LoadRecipesImpl(
     }
 
     override fun all() {
-        gateway.requestAllRecipes(callback)
+        cache.loadAll(cacheCallback)
+        gateway.requestAllRecipes(gatewayCallback)
     }
 }
