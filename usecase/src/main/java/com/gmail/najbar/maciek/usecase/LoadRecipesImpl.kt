@@ -9,7 +9,7 @@ class LoadRecipesImpl(
 
     internal val gatewayCallback = object : LoadRecipes.Gateway.Callback {
         override fun gotYour(recipes: Collection<com.gmail.najbar.maciek.domain.Recipe>) {
-
+            cache.saveAll(recipes)
         }
     }
 

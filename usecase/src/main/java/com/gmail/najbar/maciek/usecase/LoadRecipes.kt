@@ -52,7 +52,7 @@ interface LoadRecipes {
          *
          * @param   recipes Recipes.
          */
-        fun cacheAll(recipes: Collection<RecipeEntity>)
+        fun saveAll(recipes: Collection<RecipeEntity>)
 
         interface Callback {
 

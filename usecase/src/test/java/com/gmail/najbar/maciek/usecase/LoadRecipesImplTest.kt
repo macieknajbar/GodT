@@ -61,7 +61,7 @@ class LoadRecipesImplTest {
                 NoOp.of(LoadRecipes.Presenter::class.java))
 
         context.checking(Expectations().apply {
-            oneOf(cache).cacheAll(recipes)
+            oneOf(cache).saveAll(recipes)
             allowing(cache).loadAll(loadRecipes.cacheCallback)
         })
 
@@ -79,6 +79,6 @@ class LoadRecipesImplTest {
             callback.found(recipes)
         }
 
-        override fun cacheAll(recipes: Collection<Recipe>) {}
+        override fun saveAll(recipes: Collection<Recipe>) {}
     }
 }
