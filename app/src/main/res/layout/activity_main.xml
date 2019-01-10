@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".RecipesActivity">
 
-    <TextView
-        android:id="@+id/recipes"
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/recipes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"

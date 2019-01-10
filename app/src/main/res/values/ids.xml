@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Recipes screen -->
     <item name="recipes" type="id" />
+
+    <!-- Recipe details -->
+    <item name="details_recipeImage" type="id" />
+    <item name="details_recipeTitle" type="id" />
+    <item name="details_recipeDescription" type="id" />
+    <item name="details_recipeIngredients" type="id" />
+
+    <!-- Recipe item -->
+    <item name="item_recipeImage" type="id" />
+    <item name="item_recipeTitle" type="id" />
+    <item name="item_recipeDescription" type="id" />
 </resources>
