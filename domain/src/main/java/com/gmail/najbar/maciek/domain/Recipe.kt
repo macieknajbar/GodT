@@ -1,6 +1,6 @@
 package com.gmail.najbar.maciek.domain
 
-data class Recipe(
+data class Recipe private constructor(
         val id: Long,
         val title: String,
         val description: String,
@@ -8,7 +8,7 @@ data class Recipe(
         val image: Image) {
 
     companion object {
-        fun from(id: Long, title: String, description: String, imageUrl: String, ingredients: Collection<Ingredient>) =
-                Recipe(id, title, description, ingredients, Image(imageUrl))
+        fun from(id: Long, title: String, description: String, imageUrl: String?, ingredients: Collection<Ingredient>) =
+                Recipe(id, title, description, ingredients, Image.from(imageUrl))
     }
 }

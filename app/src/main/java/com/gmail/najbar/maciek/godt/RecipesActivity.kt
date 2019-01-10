@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.gmail.najbar.maciek.repository.cache.LoadRecipesCache
-import com.gmail.najbar.maciek.repository.gateway.RetrofitLoadRecipesGateway
 import com.gmail.najbar.maciek.usecase.LoadRecipes
 import com.gmail.najbar.maciek.usecase.LoadRecipesImpl
 import kotlinx.android.synthetic.main.activity_main.recipes
@@ -14,7 +13,7 @@ class RecipesActivity : AppCompatActivity(),
 
     private val loadRecipes: LoadRecipes =
             LoadRecipesImpl(
-                    RetrofitLoadRecipesGateway(),
+                    Gateways.loadRecipesGateway(),
                     LoadRecipesCache(),
                     LoadRecipesPresenter(this))
 

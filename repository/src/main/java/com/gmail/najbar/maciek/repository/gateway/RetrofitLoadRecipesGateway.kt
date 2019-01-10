@@ -33,9 +33,9 @@ class RetrofitLoadRecipesGateway : LoadRecipes.Gateway {
                             callback.gotYour(it.map { recipe ->
                                 val ingredients = recipe.ingredients
                                         .flatMap { group -> group.elements }
-                                        .flatMap { element -> setOf(Ingredient(element.id.toLong(), element.name)) }
+                                        .flatMap { element -> setOf(Ingredient.from(element.id.toLong(), element.name)) }
 
-                                RecipeEntity(recipe.id.toLong(), recipe.title, recipe.description, ingredients, ImageValue(recipe.images.first().url))
+                                RecipeEntity.from(recipe.id.toLong(), recipe.title, recipe.description, recipe.images.first().url, ingredients)
                             })
                         }
                     }
