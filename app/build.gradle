@@ -27,6 +27,9 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$compatVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
+    implementation project(":usecase")
+    implementation project(":repository")
+
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.jmock:jmock-junit4:$jmockVersion"
 

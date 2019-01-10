@@ -1,5 +1,19 @@
 package com.gmail.najbar.maciek.godt
 
 interface RecipesContract {
+
+    /**
+     * Data transfer object.
+     */
     data class Recipe(val id: Long, val title: String, val description: String, val ingredients: Collection<String>, val imageUrl: String?)
+
+    interface LoadRecipesView {
+
+        /**
+         * Displays recipes on the list.
+         *
+         * @param   recipes Collection of recipes.
+         */
+        fun displayRecipes(recipes: Collection<Recipe>)
+    }
 }

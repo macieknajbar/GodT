@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import com.gmail.najbar.maciek.domain.Image as ImageValue
 import com.gmail.najbar.maciek.domain.Recipe as RecipeEntity
 
@@ -16,7 +17,8 @@ class RetrofitLoadRecipesGateway : LoadRecipes.Gateway {
     override fun requestAllRecipes(callback: LoadRecipes.Gateway.Callback) {
         val retrofit = Retrofit.Builder()
                 .client(OkHttpClient())
-                .baseUrl("https://www.godt.no/api")
+                .baseUrl("https://www.godt.no/api/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
         retrofit.create(RecipesListDetailed::class.java)
