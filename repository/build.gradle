@@ -31,4 +31,9 @@ dependencies {
 
     implementation project(":usecase")
     implementation project(":domain")
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
+
+    testImplementation "junit:junit:$junitVersion"
 }
