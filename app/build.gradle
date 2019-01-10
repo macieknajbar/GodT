@@ -24,6 +24,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$compatVersion"
+    implementation "com.android.support:recyclerview-v7:$compatVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
     testImplementation "junit:junit:$junitVersion"
@@ -32,6 +33,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"
     androidTestImplementation "com.android.support.test:rules:$rulesVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 }
 repositories {
     mavenCentral()
