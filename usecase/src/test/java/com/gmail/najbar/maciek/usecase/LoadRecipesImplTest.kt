@@ -20,7 +20,8 @@ class LoadRecipesImplTest {
     @Test fun `loads cache recipes before requesting from remote`() {
         val loadRecipes = LoadRecipesImpl(
                 gateway,
-                cache)
+                cache,
+                presenter)
 
         context.checking(Expectations().apply {
             val sequence = context.sequence("loading-recipe")
@@ -38,7 +39,8 @@ class LoadRecipesImplTest {
                 Recipe.from(3L, "Peanut butter fingers", "Put your fingers into a jar and pull out fingers covered with peanut butter", "", listOf(Ingredient.from(4L, "Peanut butter"))))
         val loadRecipes = LoadRecipesImpl(
                 NoOp.of(LoadRecipes.Gateway::class.java),
-                fakeCacheWith(recipes))
+                fakeCacheWith(recipes),
+                presenter)
 
         context.checking(Expectations().apply {
             val expected = recipes.map { LoadRecipes.Recipe.from(it) }

@@ -4,7 +4,8 @@ import com.gmail.najbar.maciek.domain.Recipe as RecipeEntity
 
 class LoadRecipesImpl(
         private val gateway: LoadRecipes.Gateway,
-        private val cache: LoadRecipes.Cache) : LoadRecipes {
+        private val cache: LoadRecipes.Cache,
+        private val presenter: LoadRecipes.Presenter) : LoadRecipes {
 
     internal val gatewayCallback = object : LoadRecipes.Gateway.Callback {
 
@@ -12,7 +13,7 @@ class LoadRecipesImpl(
 
     internal val cacheCallback = object : LoadRecipes.Cache.Callback {
         override fun found(recipes: Collection<RecipeEntity>) {
-
+            presenter.present(recipes.map { LoadRecipes.Recipe.from(it) })
         }
     }
 
