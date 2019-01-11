@@ -7,6 +7,6 @@ class DisplayDetailsPresenter(
         private val view: RecipeDetailsContract.DisplayDetailsView): DisplayDetails.Presenter {
 
     override fun presentRecipeDetails(recipe: DisplayDetails.Recipe) {
-        
+        view.displayDetailsOf(recipe)
     }
 }
