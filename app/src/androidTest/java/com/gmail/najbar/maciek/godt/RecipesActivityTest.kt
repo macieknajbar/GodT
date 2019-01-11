@@ -12,7 +12,7 @@ class RecipesActivityTest {
     @get:Rule val rule = ActivityTestRule<RecipesActivity>(RecipesActivity::class.java, false, false)
 
     private val recipes: List<RecipesContract.Recipe> = listOf(
-            RecipesContract.Recipe(1L, "One", "One desc", emptyList(), null),
+            RecipesContract.Recipe(1L, "One", "One desc", listOf("Egg", "Butter"), null),
             RecipesContract.Recipe(2L, "Two", "Two desc", emptyList(), null),
             RecipesContract.Recipe(3L, "Three", "Three desc", emptyList(), null),
             RecipesContract.Recipe(4L, "Four", "Four desc", emptyList(), null))
@@ -36,5 +36,7 @@ class RecipesActivityTest {
 
         RecipesPage.scrollTo(desiredRecipe)
         RecipesPage.enter(desiredRecipe)
+
+        RecipesPage.confirmDisplayed(desiredRecipe)
     }
 }
