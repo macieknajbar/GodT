@@ -16,4 +16,15 @@ interface RecipesContract {
          */
         fun displayRecipes(recipes: Collection<Recipe>)
     }
+
+    interface PickRecipeView {
+
+        /**
+         * Displays details for recipe with specified id.
+         *
+         * @param   recipeId Recipe ID.
+         */
+        fun displayDetailsFor(recipeId: Long)
+
+    }
 }

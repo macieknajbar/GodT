@@ -1,5 +1,6 @@
 package com.gmail.najbar.maciek.godt
 
+import com.gmail.najbar.maciek.godt.presenter.LoadRecipesPresenter
 import com.gmail.najbar.maciek.usecase.LoadRecipes
 import org.jmock.Expectations
 import org.jmock.integration.junit4.JMock

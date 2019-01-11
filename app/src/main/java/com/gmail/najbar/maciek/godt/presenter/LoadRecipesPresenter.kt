@@ -1,5 +1,6 @@
-package com.gmail.najbar.maciek.godt
+package com.gmail.najbar.maciek.godt.presenter
 
+import com.gmail.najbar.maciek.godt.RecipesContract
 import com.gmail.najbar.maciek.usecase.LoadRecipes
 
 class LoadRecipesPresenter(
