@@ -15,7 +15,7 @@ class SearchForRecipesImplTest {
 
     @Test fun `searches for recipes by ingredient`() {
         val name = "ingredient name"
-        val searchForRecipes = SearchForRecipesImpl()
+        val searchForRecipes = SearchForRecipesImpl(gateway)
 
         context.checking(Expectations().apply {
             oneOf(gateway).searchByIngredient(name, searchForRecipes.callback)
