@@ -37,7 +37,7 @@ interface DisplayDetails {
              *
              * @param   recipe Found recipe.
              */
-            fun found(recipe: Recipe)
+            fun found(recipe: RecipeEntity)
         }
     }
 

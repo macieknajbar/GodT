@@ -17,7 +17,9 @@ class DisplayDetailsImplTest {
 
     @Test fun `retrieves recipe details`() {
         val recipeId = 123L
-        val displayDetails = DisplayDetailsImpl(gateway)
+        val displayDetails = DisplayDetailsImpl(
+                gateway,
+                presenter)
 
         context.checking(Expectations().apply {
             oneOf(gateway).loadRecipeInfo(recipeId, displayDetails.callback)
@@ -31,7 +33,8 @@ class DisplayDetailsImplTest {
     @Test fun `presents recipe to user`() {
         val recipe = Recipe.from(111L, "title", "description", "url", listOf(Ingredient.from(1L, "a")))
         val displayDetails = DisplayDetailsImpl(
-                fakeGateway(recipe))
+                fakeGateway(recipe),
+                presenter)
 
         context.checking(Expectations().apply {
             oneOf(presenter).presentRecipeDetails(DisplayDetails.Recipe.from(recipe))
@@ -42,7 +45,7 @@ class DisplayDetailsImplTest {
 
     private fun fakeGateway(recipe: Recipe) = object : DisplayDetails.Gateway {
         override fun loadRecipeInfo(recipeId: Long, callback: DisplayDetails.Gateway.Callback) {
-            callback.found(DisplayDetails.Recipe.from(recipe))
+            callback.found(recipe)
         }
     }
 }
