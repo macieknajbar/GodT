@@ -15,7 +15,7 @@ class PickRecipeImplTest {
 
     @Test fun `picks a recipe`() {
         val recipeId = 123L
-        val pickRecipe = PickRecipeImpl()
+        val pickRecipe = PickRecipeImpl(presenter)
 
         context.checking(Expectations().apply {
             oneOf(presenter).presentRecipeWithId(recipeId)
