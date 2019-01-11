@@ -13,10 +13,13 @@ class SearchForRecipesImplTest {
     private val context = JUnit4Mockery()
 
     private val gateway = context.mock(SearchForRecipes.Gateway::class.java)
+    private val presenter = context.mock(SearchForRecipes.Presenter::class.java)
 
     @Test fun `searches for recipes by ingredient`() {
         val name = "ingredient name"
-        val searchForRecipes = SearchForRecipesImpl(gateway)
+        val searchForRecipes = SearchForRecipesImpl(
+                gateway,
+                presenter)
 
         context.checking(Expectations().apply {
             oneOf(gateway).searchByIngredient(name, searchForRecipes.callback)
@@ -25,14 +28,13 @@ class SearchForRecipesImplTest {
         searchForRecipes.searchByIngredient(name)
     }
 
-    private val presenter = context.mock(SearchForRecipes.Presenter::class.java)
-
     @Test fun `presents recipes to user`() {
         val name = "some"
         val recipes = listOf(
                 Recipe.from(0L, "Zero", "zero", null, emptyList()))
         val searchForRecipes = SearchForRecipesImpl(
-                fakeGateway(recipes))
+                fakeGateway(recipes),
+                presenter)
 
         context.checking(Expectations().apply {
             oneOf(presenter).presentRecipes(recipes.map { SearchForRecipes.Recipe.from(it) })
