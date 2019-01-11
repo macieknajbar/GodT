@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-class RecipesAdapter(private val recipes: Collection<RecipesContract.Recipe>) : RecyclerView.Adapter<RecipesAdapter.RecipeHolder>() {
+class RecipesAdapter(private val recipes: Collection<RecipesContract.Recipe>, private val onClickListener: View.OnClickListener) : RecyclerView.Adapter<RecipesAdapter.RecipeHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeHolder =
             RecipeHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_recipe, parent, false))
@@ -22,6 +22,8 @@ class RecipesAdapter(private val recipes: Collection<RecipesContract.Recipe>) : 
         holder.title.text = recipe.title
         holder.description.text = recipe.description
         recipe.imageUrl?.let { Glide.with(holder.itemView.context).asDrawable().load(Uri.parse(it)).into(holder.image) }
+        holder.itemView.setOnClickListener(onClickListener)
+        holder.itemView.tag = recipe
     }
 
     class RecipeHolder(view: View) : RecyclerView.ViewHolder(view) {
