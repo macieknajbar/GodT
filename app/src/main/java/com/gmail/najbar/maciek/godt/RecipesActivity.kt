@@ -24,7 +24,10 @@ class RecipesActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
 
         recipes.layoutManager = LinearLayoutManager(this)
+    }
 
+    override fun onStart() {
+        super.onStart()
         loadRecipes.all()
     }
 
