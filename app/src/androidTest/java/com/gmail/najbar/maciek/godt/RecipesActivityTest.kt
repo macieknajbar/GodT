@@ -37,7 +37,7 @@ class RecipesActivityTest {
         RecipesPage.scrollTo(desiredRecipe)
         RecipesPage.enter(desiredRecipe)
 
-        RecipesPage.confirmDisplayed(desiredRecipe)
+        RecipesPage.confirmDisplayedDetailsOf(desiredRecipe)
     }
 
     @Test fun searchesForRecipesByIngredients() {

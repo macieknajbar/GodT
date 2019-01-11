@@ -1,11 +1,13 @@
 package com.gmail.najbar.maciek.godt
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import com.gmail.najbar.maciek.godt.details.RecipeDetailsActivity
 import com.gmail.najbar.maciek.godt.presenter.LoadRecipesPresenter
 import com.gmail.najbar.maciek.godt.presenter.PickRecipePresenter
@@ -46,9 +48,12 @@ class RecipesActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
 
         searchBox.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            val phrase = v.text.toString()
+            if (phrase.isNotEmpty()
+                            .and(actionId == EditorInfo.IME_ACTION_SEARCH)) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
                 searchForRecipes.searchByIngredient(v.text.toString())
-                return@setOnEditorActionListener true
             }
 
             return@setOnEditorActionListener false
@@ -75,6 +80,9 @@ class RecipesActivity : AppCompatActivity(),
     }
 
     override fun displayFiltered(recipes: Collection<RecipesContract.Recipe>) {
-
+        this.recipes.adapter = RecipesAdapter(recipes, View.OnClickListener { view ->
+            val recipe = view.tag as RecipesContract.Recipe
+            pickRecipe.withId(recipe.id)
+        })
     }
 }

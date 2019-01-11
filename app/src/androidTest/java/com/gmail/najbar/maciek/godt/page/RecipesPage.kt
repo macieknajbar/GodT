@@ -27,7 +27,7 @@ object RecipesPage {
                 .perform(click())
     }
 
-    fun confirmDisplayed(desiredRecipe: RecipesContract.Recipe) {
+    fun confirmDisplayedDetailsOf(desiredRecipe: RecipesContract.Recipe) {
         onView(withText(desiredRecipe.title))
                 .check(matches(isDisplayed()))
 
@@ -44,6 +44,14 @@ object RecipesPage {
     fun searchFor(eggIngredient: String) {
         onView(withId(R.id.searchBox))
                 .perform(typeText(eggIngredient), pressImeActionButton())
+    }
+
+    fun confirmDisplayed(recipe: RecipesContract.Recipe) {
+        onView(withText(recipe.title))
+                .check(matches(isDisplayed()))
+
+        onView(withText(recipe.description))
+                .check(matches(isDisplayed()))
     }
 
     fun cannotSee(recipe: RecipesContract.Recipe) {
