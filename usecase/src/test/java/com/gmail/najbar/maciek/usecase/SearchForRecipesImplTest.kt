@@ -1,5 +1,6 @@
 package com.gmail.najbar.maciek.usecase
 
+import com.gmail.najbar.maciek.domain.Recipe
 import org.jmock.Expectations
 import org.jmock.integration.junit4.JMock
 import org.jmock.integration.junit4.JUnit4Mockery
@@ -22,5 +23,27 @@ class SearchForRecipesImplTest {
         })
 
         searchForRecipes.searchByIngredient(name)
+    }
+
+    private val presenter = context.mock(SearchForRecipes.Presenter::class.java)
+
+    @Test fun `presents recipes to user`() {
+        val name = "some"
+        val recipes = listOf(
+                Recipe.from(0L, "Zero", "zero", null, emptyList()))
+        val searchForRecipes = SearchForRecipesImpl(
+                fakeGateway(recipes))
+
+        context.checking(Expectations().apply {
+            oneOf(presenter).presentRecipes(recipes.map { SearchForRecipes.Recipe.from(it) })
+        })
+
+        searchForRecipes.searchByIngredient(name)
+    }
+
+    private fun fakeGateway(recipes: Collection<Recipe>) = object : SearchForRecipes.Gateway {
+        override fun searchByIngredient(name: String, callback: SearchForRecipes.Gateway.Callback) {
+            callback.filtered(recipes)
+        }
     }
 }
