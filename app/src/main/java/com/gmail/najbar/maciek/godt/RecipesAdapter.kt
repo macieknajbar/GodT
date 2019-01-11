@@ -1,11 +1,13 @@
 package com.gmail.najbar.maciek.godt
 
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class RecipesAdapter(private val recipes: Collection<RecipesContract.Recipe>) : RecyclerView.Adapter<RecipesAdapter.RecipeHolder>() {
 
@@ -19,6 +21,7 @@ class RecipesAdapter(private val recipes: Collection<RecipesContract.Recipe>) : 
 
         holder.title.text = recipe.title
         holder.description.text = recipe.description
+        recipe.imageUrl?.let { Glide.with(holder.itemView.context).asDrawable().load(Uri.parse(it)).into(holder.image) }
     }
 
     class RecipeHolder(view: View) : RecyclerView.ViewHolder(view) {

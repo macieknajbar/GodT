@@ -12,7 +12,7 @@
         android:layout_marginTop="5dp"
         android:adjustViewBounds="true"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@android:color/darker_gray" />
+        tools:srcCompat="@android:color/black" />
 
     <TextView
         android:id="@id/item_recipeTitle"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="30dp"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/item_recipeImage"
@@ -34,7 +34,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="16sp"

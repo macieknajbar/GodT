@@ -36,6 +36,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$compatVersion"
     implementation "com.android.support:recyclerview-v7:$compatVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     implementation project(":usecase")
     implementation project(":repository")
@@ -50,4 +52,5 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    google()
 }
