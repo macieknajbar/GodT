@@ -6,6 +6,9 @@ import com.gmail.najbar.maciek.godt.page.RecipesPage
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Mind to run with tst flavor.
+ */
 class RecipesActivityTest {
 
     @get:Rule val rule = ActivityTestRule<RecipesActivity>(RecipesActivity::class.java, false, false)
