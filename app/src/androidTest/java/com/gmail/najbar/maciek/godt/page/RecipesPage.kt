@@ -42,7 +42,7 @@ object RecipesPage {
     }
 
     fun searchFor(eggIngredient: String) {
-        onView(withId(R.id.search_bar))
+        onView(withId(R.id.searchBox))
                 .perform(typeText(eggIngredient), pressImeActionButton())
     }
 

@@ -3,6 +3,7 @@
 
     <!-- Recipes screen -->
     <item name="recipes" type="id" />
+    <item name="searchBox" type="id" />
 
     <!-- Recipe details -->
     <item name="details_recipeImage" type="id" />

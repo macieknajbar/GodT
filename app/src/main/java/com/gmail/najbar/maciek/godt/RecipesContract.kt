@@ -27,4 +27,14 @@ interface RecipesContract {
         fun displayDetailsFor(recipeId: Long)
 
     }
+
+    interface SearchForRecipesView {
+
+        /**
+         * Displays filtered recipes.
+         *
+         * @param   recipes Collection of recipes.
+         */
+        fun displayFiltered(recipes: Collection<Recipe>)
+    }
 }
